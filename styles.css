@@ -1,0 +1,305 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Base
+───────────────────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 420px;
+  padding: 16px;
+  font-family: -apple-system, Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  background: #ffffff;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Header row: title + gear icon
+───────────────────────────────────────────────────────────────────────────── */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+h1 {
+  color: #0a66c2;
+  font-size: 17px;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Button reset — all buttons inherit from here
+───────────────────────────────────────────────────────────────────────────── */
+button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+}
+
+/* ── Gear icon ── */
+.btn-icon {
+  background: none;
+  color: #999;
+  font-size: 17px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  line-height: 1;
+  width: auto;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-icon:hover {
+  background: #f0f2f5;
+  color: #444;
+}
+
+/* ── Small save button inside the settings panel ── */
+.btn-small {
+  background-color: #0a66c2;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  width: auto;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.btn-small:hover {
+  background-color: #004182;
+}
+
+/* ── Main analyze button ── */
+#analyzeBtn {
+  width: 100%;
+  background: linear-gradient(135deg, #0a66c2 0%, #004d99 100%);
+  color: white;
+  padding: 11px 24px;
+  border-radius: 22px;
+  font-size: 14px;
+  margin-top: 8px;
+  letter-spacing: 0.3px;
+  transition: opacity 0.15s;
+}
+#analyzeBtn:hover {
+  opacity: 0.88;
+}
+
+/* ── Copy button ── */
+.btn-copy {
+  background-color: #16a34a;
+  color: white;
+  padding: 7px 18px;
+  border-radius: 16px;
+  font-size: 12px;
+  width: auto;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  transition: background 0.15s;
+}
+.btn-copy:hover {
+  background-color: #15803d;
+}
+.btn-copy.copied {
+  background-color: #15803d;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   API Key panel — CSS accordion with max-height transition
+───────────────────────────────────────────────────────────────────────────── */
+.api-key-panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.28s ease;
+}
+.api-key-panel.open {
+  max-height: 140px; /* safely larger than the content height */
+}
+
+.api-key-section {
+  text-align: left;
+  background: #f8f9fa;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 2px;
+}
+
+.api-key-section label {
+  display: block;
+  font-size: 10px;
+  font-weight: bold;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 6px;
+}
+
+.api-key-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.api-key-row input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: monospace;
+  outline: none;
+  background: white;
+}
+.api-key-row input:focus {
+  border-color: #0a66c2;
+  box-shadow: 0 0 0 2px rgba(10, 102, 194, 0.15);
+}
+
+#keyStatus {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  min-height: 14px;
+}
+.status-ok    { color: #16a34a; }
+.status-error { color: #c0392b; }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Loading state
+───────────────────────────────────────────────────────────────────────────── */
+#loading {
+  margin: 18px 0 4px;
+}
+.loading-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e9ecef;
+  border-top-color: #7c3aed;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+.loading-text {
+  color: #6b7280;
+  font-size: 13px;
+  margin: 0;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+.hidden {
+  display: none;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Result area
+───────────────────────────────────────────────────────────────────────────── */
+#result {
+  margin-top: 14px;
+  text-align: left;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Muted meta section (name + about) ── */
+.profile-meta {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid #e9ecef;
+}
+.meta-name {
+  font-size: 13px;
+  font-weight: bold;
+  color: #555;
+}
+.meta-about {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+  max-height: 56px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  line-height: 1.4;
+}
+
+/* ── Shared label style for AI blocks ── */
+.block-label {
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+/* ── DISC block — purple ── */
+.disc-block {
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+  border-left: 3px solid #7c3aed;
+  border-radius: 0 8px 8px 0;
+  padding: 11px 13px;
+}
+.disc-label {
+  color: #7c3aed;
+}
+.disc-text {
+  font-size: 13px;
+  color: #4c1d95;
+  line-height: 1.55;
+}
+
+/* ── Connect message block — green, high visual weight ── */
+.message-block {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-left: 3px solid #16a34a;
+  border-radius: 0 8px 8px 0;
+  padding: 12px 13px;
+}
+.msg-label {
+  color: #15803d;
+}
+.message-text {
+  font-size: 13.5px;
+  color: #14532d;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  font-style: italic;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Error state
+───────────────────────────────────────────────────────────────────────────── */
+.error {
+  color: #c0392b;
+  font-size: 13px;
+  background: #fdf2f2;
+  border-left: 3px solid #e74c3c;
+  padding: 9px 11px;
+  border-radius: 0 6px 6px 0;
+  text-align: left;
+  margin: 0;
+}

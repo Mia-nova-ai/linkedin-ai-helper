@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mia's Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header: title left, gear icon right -->
+    <div class="header-row">
+      <h1>Mia's AI Assistant</h1>
+      <button id="settingsBtn" class="btn-icon" title="Edit API Key">⚙️</button>
+    </div>
+
+    <!-- API Key Panel — collapsed by default, opens if no key saved -->
+    <div id="apiKeyPanel" class="api-key-panel">
+      <div class="api-key-section">
+        <label for="apiKey">Anthropic API Key</label>
+        <div class="api-key-row">
+          <input type="password" id="apiKey" placeholder="sk-ant-..." autocomplete="off" />
+          <button id="saveKeyBtn" class="btn-small">Save</button>
+        </div>
+        <span id="keyStatus"></span>
+      </div>
+    </div>
+
+    <button id="analyzeBtn">✦ Analyze Profile</button>
+
+    <!-- Loading state — hidden by default -->
+    <div id="loading" class="hidden">
+      <div class="loading-inner">
+        <div class="spinner"></div>
+        <p class="loading-text">🧠 AI is analyzing the profile...</p>
+      </div>
+    </div>
+
+    <!-- All results render here -->
+    <div id="result"></div>
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
