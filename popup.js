@@ -141,7 +141,14 @@ async function callClaude(apiKey, name, about) {
     `About: ${about}\n\n` +
     `任务：\n` +
     `1. 分析此人的 LinkedIn 简介，用一句话推测他的 DISC 性格倾向。\n` +
-    `2. 结合我是一个寻找 AI 应用岗位的 Senior BA 的背景，写一段 300 字符以内、极具吸引力的 LinkedIn Connect 破冰消息（英文）。\n\n` +
+    `2. Analyze this LinkedIn profile. Generate a connection message.
+STRICT RULES FOR THE MESSAGE:
+Absolutely NO emojis.
+Zero corporate buzzwords (do not use 'leverage', 'synergy', 'delve', 'align').
+Write like a busy Senior BA sending a quick, casual, but polite message.
+Max 2 sentences.
+Pick ONE specific, interesting detail from their 'About' section to mention.
+DO NOT use em dashes (—) or hyphens (-). Keep punctuation simple (only periods and commas). \n\n` +
     `请严格按以下 JSON 格式返回，不要有任何多余的文字或代码块标记：\n` +
     `{"disc":"你的一句话 DISC 判断","message":"英文破冰消息"}`;
 
